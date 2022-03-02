@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Transaction History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="transactionList($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngIf="!loading">
+    <ion-item *ngFor="let transaction of transactions" lines="full">
+      <ion-label>{{ transaction.type | titlecase }}<p><small>{{ transaction.created_at.seconds * 1000 | date: 'medium'}}</small></p></ion-label>
+      <ion-note *ngIf="transaction.amount > 0" slot="end" color="success">+ RM {{ transaction.amount | number:'1.2-2' }}</ion-note>
+      <ion-note *ngIf="transaction.amount <= 0" slot="end" color="danger">- RM {{ (transaction.amount >= 0 ? transaction.amount : -transaction.amount) | number:'1.2-2' }}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="loading">
+    <ion-item lines="full">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+</ion-content>

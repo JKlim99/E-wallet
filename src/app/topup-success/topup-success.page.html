@@ -1,0 +1,11 @@
+<ion-content>
+  <div style="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);transform: scale(3);"
+  >
+    <ion-spinner *ngIf="loading"></ion-spinner>
+    <ion-icon *ngIf="!loading" name="checkmark-outline"></ion-icon>
+  </div>
+</ion-content>

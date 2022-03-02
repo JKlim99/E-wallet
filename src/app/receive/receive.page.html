@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Request Money</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="margin-top:100px">
+    <ion-card-header style="text-align:center">
+      <qr-code [value]='value' size="300" canvas="true"></qr-code>
+    </ion-card-header>
+    <ion-card-content style="text-align:center">
+      Request amount: RM {{ amount | number:'1.2-2' }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col>
+      <ion-button [routerLink]="['/main-page']" expand="block" size="block">Done</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

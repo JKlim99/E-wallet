@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Top Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="paymentPage(form)">
+    <ion-item style="margin: 16px 24px 16px 24px">
+      <ion-label position="floating">Enter your preferred amount</ion-label>
+      <ion-input placeholder="RM" type="number" [(ngModel)]="amount" name="amount" inputmode="numeric" min="10" required></ion-input>
+    </ion-item>
+    <ion-text style="margin: 0px 24px 0px 40px; color:grey;">Min topup amount is RM10</ion-text>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="form.ngSubmit.emit()" expand="block" style="margin: 16px 24px 16px 24px" >Topup</ion-button>
+</ion-footer>

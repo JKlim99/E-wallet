@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Send</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="full">
+    <ion-label position="floating">Amount</ion-label>
+    <ion-input type="text" name="sendAmount" required></ion-input>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="text" name="sendEmail" required></ion-input>
+  </ion-item>
+  <ion-button expand="block">Send Money (Email)</ion-button>
+
+  <ion-item lines="full">
+    <ion-label position="floating">Amount</ion-label>
+    <ion-input type="text" name="sendAmount" required></ion-input>
+  </ion-item>
+  <ion-button color="danger" (click)="scanBRcode()" expand="block">Send Money (QR)</ion-button>
+
+  <ion-card>
+    <div *ngIf="scannedBarCode">
+        <ion-item>
+            Scanned code output: <strong>{{ scannedBarCode["text"] }}</strong>
+        </ion-item>
+        <ion-item>
+            Scanned code output: <strong>{{ scannedBarCode["format"] }}</strong>
+        </ion-item>
+    </div>
+</ion-card>
+</ion-content>

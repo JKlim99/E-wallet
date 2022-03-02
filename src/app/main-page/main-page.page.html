@@ -1,0 +1,94 @@
+<ion-content>
+  <ion-text *ngIf="!user_loading">
+    <h1 style="margin: 16px 24px 16px 24px">Welcome, <br/><a [routerLink]="['/profile']">{{ user.first_name }} {{ user.last_name }}</a></h1>
+  </ion-text>
+  <ion-card *ngIf="!wallet_loading">
+    <ion-card-header>
+      <ion-card-subtitle>Wallet</ion-card-subtitle>
+      <ion-card-title>RM {{ user.balance | number:'1.2-2' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button [routerLink]="['/topup']" expand="block">Topup</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!transaction_loading">
+    <ion-card-header>
+      <ion-card-subtitle>Transaction History</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let transaction of transactions" lines="full">
+        <ion-label>{{ transaction.type | titlecase }}</ion-label>
+        <ion-note *ngIf="transaction.amount > 0" slot="end" color="success">+ RM {{ transaction.amount | number:'1.2-2' }}</ion-note>
+        <ion-note *ngIf="transaction.amount <= 0" slot="end" color="danger">- RM {{ (transaction.amount >= 0 ? transaction.amount : -transaction.amount) | number:'1.2-2' }}</ion-note>
+      </ion-item>
+      <br/>
+      <a [routerLink]="['/transaction']">SEE MORE</a>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!transaction_loading">
+    <ion-card-header>
+      <ion-card-subtitle>Send & Request</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button (click) = "scanBarcode()" expand="block">Send Money</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button [routerLink]="['/receive-form']" size="block">Request Money</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text *ngIf="user_loading">
+    <h1 style="margin: 16px 24px 16px 24px"><ion-skeleton-text animated style="width:30%"></ion-skeleton-text><br/><ion-skeleton-text animated style="width:60%"></ion-skeleton-text></h1>
+  </ion-text><br/>
+  <ion-card *ngIf="wallet_loading">
+    <ion-card-header>
+      <ion-card-subtitle><ion-skeleton-text animated style="width:15%"></ion-skeleton-text></ion-card-subtitle>
+      <ion-card-title><ion-skeleton-text animated style="width:30%"></ion-skeleton-text></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-skeleton-text animated style="width:100%"></ion-skeleton-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="transaction_loading">
+    <ion-card-content>
+      <ion-skeleton-text animated style="width:40%"></ion-skeleton-text>
+      <br/>
+      <ion-item lines="full">
+        <ion-label><ion-skeleton-text animated></ion-skeleton-text></ion-label>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label><ion-skeleton-text animated></ion-skeleton-text></ion-label>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label><ion-skeleton-text animated></ion-skeleton-text></ion-label>
+      </ion-item>
+      <br/>
+      <ion-skeleton-text animated style="width:30%"></ion-skeleton-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="transaction_loading">
+    <ion-card-header>
+      <ion-card-subtitle><ion-skeleton-text animated style="width:40%"></ion-skeleton-text></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-skeleton-text animated style="width:100%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width:100%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width:100%"></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

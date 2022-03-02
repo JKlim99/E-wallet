@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Request Money</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="requestMoney(form)">
+    <ion-item style="margin: 16px 24px 16px 24px">
+      <ion-label position="floating">Enter your preferred amount</ion-label>
+      <ion-input placeholder="RM" type="number" [(ngModel)]="amount" name="amount" inputmode="numeric" min="10" required></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="form.ngSubmit.emit()" expand="block" style="margin: 16px 24px 16px 24px" >Request</ion-button>
+</ion-footer>

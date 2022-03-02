@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="payWithStripe(form)">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Topup Amount</ion-card-subtitle>
+        <ion-card-title>RM {{ paymentAmount | number:'1.2-2' }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-item lines="full">
+      <ion-label position="floating">Card Number</ion-label>
+      <ion-input type="number" [(ngModel)]="cardDetails.number" name="number" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Expiry Month</ion-label>
+      <ion-input type="number" [(ngModel)]="cardDetails.expMonth" name="expMonth" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Expiry Year</ion-label>
+      <ion-input type="number" [(ngModel)]="cardDetails.expYear" name="expYear" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">CVC</ion-label>
+      <ion-input type="password" [(ngModel)]="cardDetails.cvc" name="cvc" required></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="form.ngSubmit.emit()" expand="block" style="margin: 16px 24px 16px 24px" >Topup</ion-button>
+</ion-footer>

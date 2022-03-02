@@ -1,0 +1,30 @@
+<ion-content align="center">
+  <img src="./assets/icon/icon.PNG" style="margin: 50px 0px 0px 0px"/>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form #form="ngForm" (ngSubmit)="login(form)">
+        <ion-item lines="full">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" [(ngModel)]="user.email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
+        </ion-item>
+        <br/>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" expand="block">Sign In</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+      </ion-card-content>
+    </ion-card>
+    <ion-text>
+      Don't have an account? <a [routerLink]="['/registration']" class="small-text">Register now</a>
+    </ion-text>
+</ion-content>
